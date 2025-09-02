@@ -1,0 +1,13 @@
+
+
+.muted {
+	color: var(--muted);
+	opacity: .6;
+}
+
+#hoy-fecha  {
+
+	border: 1px solid rgba(2, 2, 69, 0.468);
+}
+
+

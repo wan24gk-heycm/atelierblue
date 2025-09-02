@@ -1,0 +1,102 @@
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .ingresos{
+       display: flex;
+       flex-direction: column;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .login-section {
+      background-color: #ffffff;
+      padding: 2rem;
+      margin: 0.8rem;
+      justify-content: center;
+    }
+
+    .login-section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      font-weight: bold;
+      margin-bottom: 1.2rem;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      background-color: #f4f1ff;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      padding: 10px;
+      width: 100%;
+    }
+
+    form{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .input-group svg {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      fill: #FD2C25;
+    }
+    .input-group input {
+      border: none;
+      outline: none;
+      background: transparent;
+      width: 100%;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #FD2C25;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 40px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #724a49;
+    }
+
+    .tel-group{
+      display: flex;
+      flex-direction: row;
+    }
+
+    .lada{
+      display: flex;
+      align-items: center;
+      background-color: #f4f1ff;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      margin-right: 7px;
+      padding: 10px;
+      border: none;
+    }
+
+    .input-group select{
+      margin: 0;
+      padding: 0;
+      font-size: 1rem;
+      border: none;
+    }
+  
+
+    

@@ -1,0 +1,590 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+		:root {
+			--bg: #ffffffff;
+			--panel: #ffffffff;
+			--panel-2: #183024;
+			--text: #d7e7dd;
+			--muted: #93a095;
+			--accent: #ff1414ff;
+			--accent-2: #ff9b9bff;
+			--danger: #33433a;
+			--ring: 0 0 0 3px rgba(57, 255, 20, .25);
+			--radius: 18px;
+			font-synthesis-weight: none
+		}
+
+		* {
+			box-sizing: border-box
+		}
+
+
+
+		.app {
+			display: grid;
+			grid-template-columns: 1fr 360px;
+		}
+
+		@media (max-width:900px) {
+			.app {
+				grid-template-columns: 1fr
+			}
+
+			.calendar-card {
+				order: -1
+			}
+
+
+
+		}
+.fecha{
+	display: none;
+}
+		.card {
+			background: white;
+			border: 1px solid rgba(255, 255, 255, .05);
+			border-radius: var(--radius);
+			box-shadow: 0 10px 30px rgba(0, 0, 0, .35), 0 0 0 1px rgba(255, 255, 255, .035) inset;
+		}
+
+		.appointments {
+			padding: 22px 22px 8px;
+			display: flex;
+			flex-direction: column;
+			min-height: 0;
+			overflow: hidden;
+			display: flex;
+			flex-direction: column;
+			padding: 22px 22px 8px;
+			min-height: 0;
+			overflow: hidden;
+			margin: 5px;
+		}
+
+		.section-title {
+			display: flex;
+			align-items: baseline;
+			gap: 12px;
+		}
+
+		.section-title h2 {
+			margin: 0;
+			font-weight: 700;
+			letter-spacing: .2px;
+		}
+
+		.section-title small {
+			color: var(--muted)
+		}
+
+		.date-pill {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 8px 12px;
+			border-radius: 999px;
+			background: rgba(255, 255, 255, .04);
+			border: 1px solid rgba(255, 255, 255, .06);
+			margin-top: 8px;
+			color: var(--muted);
+		}
+
+		.list {
+			margin-top: 14px;
+			padding-bottom: 6px;
+			overflow: auto;
+			flex: 1;
+		}
+
+		.apt {
+			display: grid;
+			grid-template-columns: 86px 1fr auto;
+			align-items: center;
+			gap: 14px;
+			padding: 14px;
+			margin: 10px 0;
+			border-radius: 16px;
+			background: rgba(255, 255, 255, .035);
+			border: 1px solid rgba(255, 255, 255, .06);
+		}
+
+		.apt time {
+			font-weight: 600
+		}
+
+		.apt .who {
+			font-weight: 600
+		}
+
+		.apt .meta {
+			color: var(--muted);
+			font-size: .92rem
+		}
+
+		.badge {
+			border-radius: 50%;
+			padding: 2px;
+			background: #ff0000ff;
+			font-size: 7px;
+			color: #ff0000ff;
+			width: .5rem;
+			height: .5rem;
+		}
+
+		.empty {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 12px;
+			padding: 26px;
+			margin-top: 16px;
+			border-radius: 16px;
+			background: repeating-linear-gradient(45deg, rgba(255, 255, 255, .03) 0 6px, rgba(255, 255, 255, .015) 6px 12px);
+			border: 1px dashed rgba(255, 255, 255, .08);
+			color: var(--muted);
+		}
+
+		.calendar-card {
+			padding: 18px
+		}
+
+		.calendar {
+			padding: 14px;
+			border-radius: 16px;
+			background: white;
+			border: 1px solid rgba(248, 0, 0, 1);
+		}
+
+		.cal-head {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 8px 6px 14px
+		}
+
+		.cal-head h3 {
+			margin: 0;
+			font-size: 1.5rem
+		}
+
+		.nav {
+			display: flex;
+			gap: 8px
+		}
+
+		.nav button {
+			all: unset;
+			cursor: pointer;
+			padding: 8px;
+			border-radius: 12px;
+			line-height: 0;
+			border: 1px solid rgba(255, 255, 255, .08);
+			background: rgba(255, 255, 255, .03);
+		}
+
+		.nav button:focus-visible {
+			outline: var(--ring)
+		}
+
+		.dow,
+		.days {
+			display: grid;
+			grid-template-columns: repeat(7, 1fr)
+		}
+
+		.dow {
+			color: black;
+			font-size: 1rem;
+			padding: 0 6px 6px;
+			background: white;
+		}
+
+		.day {
+			background: white;
+			position: relative;
+			display: grid;
+			place-items: center;
+			aspect-ratio: 1/1;
+			margin: 4px;
+			border-radius: 12px;
+			cursor: pointer;
+			user-select: none;
+			border: 1px solid rgba(255, 255, 255, 1);
+			transition: transform .08s ease;
+		}
+
+
+
+		.day:hover {
+			background: rgba(255, 255, 255, .04);
+			border-color: rgba(255, 255, 255, .12);
+			box-shadow: 0 6px 20px rgba(0, 0, 0, .25) inset;
+		}
+
+		.day.disabled {
+			opacity: .35;
+			cursor: not-allowed
+		}
+
+		.day.has-apt {
+			border-color: rgba(255, 20, 20, 0.65);
+			box-shadow: 0 0 24px rgba(57, 255, 20, .28), inset 0 0 0 1px rgba(57, 255, 20, .25);
+		}
+
+
+		.dot {
+			position: absolute;
+			bottom: 8px;
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			background: var(--accent);
+			opacity: .9;
+		}
+
+		.day.selected {
+			outline: var(--ring);
+			background: radial-gradient(220px 220px at 50% 0%, rgba(255, 20, 20, 0.1), rgba(255, 255, 255, 0) 60%), linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02));
+			border-color: rgba(255, 20, 20, 0.85);
+		}
+
+		.legend {
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			color: var(--muted);
+			font-size: .85rem;
+			padding: 10px 6px 0
+		}
+
+		.legend i {
+			display: inline-block;
+			width: 10px;
+			height: 10px;
+			border-radius: 3px
+		}
+
+		.l-apt {
+			background: var(--accent)
+		}
+
+		.l-none {
+			background: var(--danger)
+		}
+
+		.citas-t{
+			margin-top: 1.7rem;
+			border-radius: 10px;
+			background: red;
+			padding: 0.5rem;
+			color: white;
+		}
+		.notes{
+			font-size: 20px;
+			font-weight: bold;
+			text-align: justify;
+		}
+.divider {
+  width: 100%;
+  height: 2px;
+  background-color: #ccc; /* gris suave */
+  margin: 15px 0; /* espacio arriba y abajo */
+  border-radius: 1px;
+}
+
+
+
+	.resultados{
+		width: 100%;
+		align-items: center;
+	}
+
+	.calendario{
+		width: 100%;
+		align-items: center;
+		justify-content: center;
+  overflow: auto;      /* agrega scroll vertical si se pasa */
+  padding: 1rem;
+  min-height: 100%;
+   height: auto; 
+	}
+
+    .pruebas {
+  display: flex;
+  flex-direction: column;  
+  justify-content: flex-start;
+  align-items: center;
+				width: 100%;
+
+
+  		
+
+}
+
+.entrega-card {
+  width: 100%;              /* ajusta el ancho */
+  max-width: 900px;        /* límite para que no crezca demasiado */
+  margin: 10px 0;          /* espacio entre tarjetas */
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+    .entrega-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+	  text-justify: auto;
+	  flex-wrap: none;
+    }
+
+    .hora, .bahia {
+      background: #e63946;
+      color: #fff;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-radius: 25px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+  
+
+    .estatus {
+		 
+
+      background: #f1f1f1;
+      color: #666;
+      font-size: 13px;
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .estatus img {
+      width: 16px;
+      height: 16px;
+	  
+	    
+
+    }
+
+    .foto {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 3px solid #e63946;
+      overflow: hidden;
+      margin-right: 20px;
+	  
+    }
+
+    .foto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cliente {
+      display: flex;
+      flex-direction: column;
+	
+		 width: 65%;
+
+    }
+
+    .cliente .nombre {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .cliente .detalle {
+      color: #333;
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+
+    .asesor {
+      font-weight: bold;
+      color: #000;
+      font-size: 16px;
+    }
+
+     /* Responsive */
+    @media (max-width: 600px) {
+      .entrega-card {
+        flex-direction: column;
+		align-items: center;
+      }
+      .foto {
+        margin: 15px 0;
+      }
+	  .cliente {
+		width: 100%;
+	  }
+	  .entrega-info {
+		width: 100%;
+		flex-direction: row;
+		justify-content: space-between;
+		margin: 0;
+	  }
+	.bahia, .hora{
+		margin: 0;
+		
+	  }
+
+}
+    
+
+/* ENTREGAS 
+
+.dates {
+	width: 100%;
+	margin-top: 1rem;
+	display: flex;
+	gap: 8px;
+	min-height: 110px;
+	padding: 10px;
+	border: 1px solid white;
+	border-radius: 14px;
+	background: rgba(255, 255, 255, 0.921);
+}
+
+.entregas {
+	width: 100%;
+	display: flex;
+
+}
+
+.entregas div:first-child {
+	display: flex;
+	align-items: center;
+}
+
+.unidad img {
+	width: 5rem;
+	border-radius: 50%;
+	border: 1px solid #FD2C25;
+}
+
+.unidad {
+	width: 20%;
+
+}
+
+.entrega_status {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	width: 20%;
+	justify-content: space-around;
+
+}
+
+.entrega_cliente {
+	width: 60%;
+	padding-left: 1rem;
+
+}
+
+.nombre_cli {
+	font-size: 20px;
+	font-weight: bold;
+	color: #000;
+}
+
+.modelo {
+	font-size: 16px;
+	color: #000;
+	margin-top: 0.7rem;
+}
+
+.vin_unidad {
+	font-size: 16px;
+	color: #000;
+	margin-top: 0.2rem;
+}
+
+.nombre_ases {
+	font-size: 16px;
+	font-weight: bold;
+	color: #222;
+	margin-top: 0.2rem;
+}
+
+.entrega_hr {
+	background: linear-gradient(135deg, rgb(255, 0, 0), rgba(246, 69, 69, 0.637));
+	color: #fff;
+	padding: 4px 10px;
+	border-radius: 15px;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	width: fit-content;
+}
+
+.entrega_bahia {
+	background: linear-gradient(135deg, rgb(255, 0, 0), rgba(246, 69, 69, 0.637));
+	color: #fff;
+	padding: 4px 10px;
+	border-radius: 15px;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	width: fit-content;
+}
+
+.entrega_estado {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 16px;
+	font-weight: 600;
+	color: #7f8c8d;
+	background-color: rgba(127, 140, 141, 0.15);
+	padding: 3px 12px;
+	border-radius: 1rem;
+	white-space: nowrap;
+
+}
+
+.entrega_estado p {
+	margin: 0;
+}
+
+.entrega_estado img {
+	width: 1.1rem;
+}
+
+.pruebas{
+	color: white;
+	font-size: 1.3rem;
+}
+
+
+@media (max-width:1200px) {
+
+
+	.unidad {
+		width: 15%;
+	}
+
+	.entrega_status {
+		width: 25%;
+	}
+
+	.entrega_cliente {
+		width: 60%;
+	}
+}
+*/
